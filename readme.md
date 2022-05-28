@@ -21,6 +21,10 @@
 <center><img src=".readme_img/python.png" /></center>
 
 
+## 维持 Cookie 有效
+请参考`keep_session.py`。
+
+
 ## 网页示例
 
 可以将 **GoLibCookie** 应用于服务器，以便更方便与手机操作。
