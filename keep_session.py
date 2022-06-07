@@ -12,6 +12,8 @@ for key, morsel in cookie.items():
     session.cookies.set(key, morsel)
 
 while True:
+    if session.cookies.keys().count("Authorization") > 1:
+        session.cookies.set("Authorization", domain="", value=None)
     res = session.post("http://wechat.v2.traceint.com/index.php/graphql/", json={
         "query": 'query getUserCancleConfig { userAuth { user { holdValidate: getSchConfig(fields: "hold_validate", extra: true) } } }',
         "variables": {},
@@ -22,7 +24,7 @@ while True:
     except json.decoder.JSONDecodeError as err:
         print("Error: %s" % err)
         break
-    if result.get('errors') and result.get('errors')[0].get('code') != 0:
+    if result.get("errors") and result.get("errors")[0].get("code") != 0:
         print("Session expired!")
         break
     print("Session OK.")
